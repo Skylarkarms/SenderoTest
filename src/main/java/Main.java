@@ -3,7 +3,7 @@ import sendero.Merge;
 
 public class Main {
     public static void main(String[] args) {
-        Gates.In<String> hello = new Gates.In<>("Hello");
+        Gates.In<String> hello = new Gates.In<>();
         Gates.In<String> world = new Gates.In<>("World");
         Merge<String[]> helloWorld = new Merge<>(new String[2], strings -> {
             boolean hasNulls = false;
@@ -41,5 +41,8 @@ public class Main {
                     result.unregister();
                 }
         );
+
+        System.out.println("setting hello...");
+        hello.accept("Hello");
     }
 }
