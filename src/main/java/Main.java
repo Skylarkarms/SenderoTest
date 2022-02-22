@@ -6,15 +6,15 @@ public class Main {
         Gates.In<String> hello = new Gates.In<>();
         Gates.In<String> world = new Gates.In<>("World");
         Merge<String[]> helloWorld = new Merge<>(new String[2], strings -> {
-            boolean hasNulls = false;
+            boolean shouldDeliver = true;
             for (String s:strings
                  ) {
                 if (s == null) {
-                    hasNulls = true;
+                    shouldDeliver = false;
                     break;
                 }
             }
-            return hasNulls;
+            return shouldDeliver;
         });
         helloWorld.from(hello, updater -> helloString -> {
             updater.update(strings -> {
